@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="icon" type="image/png" href="icon.png">
+
+  <title>Searchub - Tech apparel and products</title>
+
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --pink: #ec4899;
+      --orange: #f97316;
+      --yellow: #facc15;
+      --cyan: #06b6d4;
+      --dark: #171329;
+      --light: #fff8ff;
+      --card: rgba(255, 255, 255, 0.88);
+      --shadow: 0 18px 50px rgba(62, 31, 105, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--dark);
+      background:
+        radial-gradient(circle at 10% 10%, #ffd6f7 0, transparent 30%),
+        radial-gradient(circle at 90% 15%, #c8f7ff 0, transparent 28%),
+        radial-gradient(circle at 50% 100%, #ffe8b5 0, transparent 35%),
+        var(--light);
+      min-height: 100vh;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 6%;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    }
+
+    .logo {
+      font-size: 1.65rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background:
+        linear-gradient(
+          90deg,
+          var(--purple),
+          var(--pink),
+          var(--orange)
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      width: min(1180px, 90%);
+      margin: 55px auto 30px;
+      min-height: 420px;
+      padding: 55px;
+      border-radius: 36px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background:
+        linear-gradient(
+          120deg,
+          rgba(124, 58, 237, 0.96),
+          rgba(236, 72, 153, 0.92),
+          rgba(249, 115, 22, 0.9)
+        );
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .hero::before {
+      width: 300px;
+      height: 300px;
+      right: -80px;
+      top: -90px;
+    }
+
+    .hero::after {
+      width: 180px;
+      height: 180px;
+      right: 250px;
+      bottom: -100px;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      max-width: 570px;
+      font-size: 1.15rem;
+      line-height: 1.65;
+      opacity: 0.94;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--dark);
+      background: white;
+      font-weight: 900;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: 0.25s ease;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+      width: min(1180px, 90%);
+      margin: 60px auto;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      font-size: 2rem;
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      color: #6d6681;
+      margin-top: 5px;
+    }
+
+    .stores {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .store-button {
+      text-decoration: none;
+      color: var(--dark);
+      background: var(--card);
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      border: 2px solid transparent;
+      transition: 0.25s ease;
+    }
+
+    .store-button:hover {
+      transform: translateY(-7px);
+      border-color: var(--pink);
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+    }
+
+    .store-button strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .store-button span {
+      color: #777087;
+      font-size: 0.9rem;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .product {
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    .product:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, #f5d0fe, #bae6fd);
+      transition: opacity 0.3s ease;
+    }
+
+    .product-body {
+      padding: 20px;
+    }
+
+    .category {
+      color: var(--purple);
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product h3 {
+      margin: 7px 0;
+      font-size: 1.1rem;
+      min-height: 27px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .price {
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    .buy-button {
+      text-decoration: none;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--pink)
+        );
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .buy-button:hover {
+      transform: scale(1.05);
+    }
+
+    .status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      margin: 25px 0;
+      color: #756d83;
+      font-size: 0.85rem;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55e;
+    }
+
+    .status-dot.stopped {
+      background: #f97316;
+      box-shadow: none;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 40px 6%;
+      text-align: center;
+      color: #777087;
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    @media (max-width: 900px) {
+      .stores,
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        padding: 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 15px 5%;
+      }
+
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) {
+        display: none;
+      }
+
+      .hero {
+        width: 92%;
+        padding: 32px 25px;
+        border-radius: 26px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .stores,
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        width: 92%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">
+      Searchub ✦
+    </div>
+
+    <div class="nav-links">
+      <a href="#stores">Stores</a>
+      <a href="#products">Products</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+
+      <span class="eyebrow">
+        DISCOVER SOMETHING AWESOME with BradDesigning. The brand that powers tomorrow. 
+      </span>
+
+      <h1>
+        Searchub
+      </h1>
+
+      <p>
+        Discover tech apparel and products from some of the coolest
+        online stores offered by BradDesigning.
+      </p>
+
+      <a
+        class="hero-button"
+        href="#products"
+      >
+        Explore Products →
+      </a>
+
+    </div>
+  </header>
+
+  <section
+    class="section"
+    id="stores"
+  >
+
+    <div class="section-heading">
+      <div>
+
+        <h2>
+          Favorite Stores
+        </h2>
+
+        <p>
+          Jump directly to the stores you love.
+        </p>
+
+      </div>
+    </div>
+
+    <div class="stores">
+
+      <a
+        class="store-button"
+        href="https://www.depop.com/braddesigning/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>
+          BradDesigning Depop
+        </strong>
+
+        <span>
+          Tech apparel
+        </span>
+      </a>
+
+      <a
+        class="store-button"
+        href="https://www.vinted.com/member/3179537117-braddesigning"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>
+           BradDesigning Vinted
+        </strong>
+
+        <span>
+          Tech apparel
+        </span>
+      </a>
+
+      <a
+        class="store-button"
+        href="https://ebay.io/m/pDIvQY"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>https://creamlike-backed-unbend.ngrok-free.dev
+           BradDesigning Ebay
+        </strong>
+
+        <span>
+          Microchips, PCBs, wiring and electronics
+        </span>
+      </a>
+
+      <a
+        class="store-button"
+        href="https://www.etsy.com/people/egpw5cjqsvdgzguf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>
+         BradDesigning Etsy
+        </strong>
+
+        <span>
+          Tech apparel
+        </span>
+      </a>
+
+    </div>
+
+  </section>
+
+  <section
+    class="section"
+    id="products"
+  >
+
+    <div class="section-heading">
+      <div>
+
+        <h2>
+          Trending Now 🔥
+        </h2>
+
+        <p>
+          Current trending products automatically refresh every 5 seconds via the dedicated Searchub product API.
+        </p>
+
+      </div>
+    </div>
+
+    <div
+      class="products"
+      id="productContainer"
+    ></div>
+
+    <div
+      class="status"
+      aria-live="polite"
+    >
+
+      <span
+        class="status-dot"
+        id="statusDot"
+      ></span>
+
+      <span id="statusText">
+        Connecting to product API...
+      </span>
+
+    </div>
+
+  </section>
+
+  <footer id="about">
+
+    <p>
+      © 2026 BradDesigning ✦ Made for meaningful shopping.
+    </p>
+    <p>In no way is searchub.net affiliated with or related to searchub.com. searchub.net only sells tech and tech related products and is in no means infringing on searchub.coms intellectual property or image. searchub.net is owned and operated by BradDesigning, a tech apparel and tech product based branding. </p>
+
+  </footer>
+
+  <script>
+
+    const API_URL =
+      "https://creamlike-backed-unbend.ngrok-free.dev";
+
+    const productContainer =
+      document.getElementById("productContainer");
+
+    const statusText =
+      document.getElementById("statusText");
+
+    const statusDot =
+      document.getElementById("statusDot");
+
+    let updateTimer = null;
+
+    let stopped = false;
+
+
+    function createProduct(product) {
+
+      const article =
+        document.createElement("article");
+
+      article.className =
+        "product";
+
+
+      const image =
+        document.createElement("img");
+
+      image.className =
+        "product-image";
+
+      image.src =
+        product.image || "";
+
+      image.alt =
+        product.name || "Product image";
+
+
+      const body =
+        document.createElement("div");
+
+      body.className =
+        "product-body";
+
+
+      const category =
+        document.createElement("span");
+
+      category.className =
+        "category";
+
+      category.textContent =
+        product.category || "Product";
+
+
+      const name =
+        document.createElement("h3");
+
+      name.textContent =
+        product.name || "Unnamed Product";
+
+
+      const priceRow =
+        document.createElement("div");
+
+      priceRow.className =
+        "price-row";
+
+
+      const price =
+        document.createElement("span");
+
+      price.className =
+        "price";
+
+      price.textContent =
+        product.price !== undefined
+          ? `$${product.price}`
+          : "";
+
+
+      const button =
+        document.createElement("a");
+
+      button.className =
+        "buy-button";
+
+      button.textContent =
+        "Shop →";
+
+      button.href =
+        product.url || "#";
+
+      button.target =
+        "_blank";
+
+      button.rel =
+        "noopener noreferrer";
+
+
+      priceRow.appendChild(price);
+
+      priceRow.appendChild(button);
+
+
+      body.appendChild(category);
+
+      body.appendChild(name);
+
+      body.appendChild(priceRow);
+
+
+      article.appendChild(image);
+
+      article.appendChild(body);
+
+
+      return article;
+
+    }
+
+
+    function updateProducts(productData) {
+
+      const oldProducts =
+        Array.from(
+          productContainer.children
+        );
+
+
+      productData.forEach(
+        (data, index) => {
+
+          const existing =
+            oldProducts[index];
+
+
+          if (!existing) {
+
+            productContainer.appendChild(
+              createProduct(data)
+            );
+
+            return;
+
+          }
+
+
+          const image =
+            existing.querySelector(
+              ".product-image"
+            );
+
+          const category =
+            existing.querySelector(
+              ".category"
+            );
+
+          const name =
+            existing.querySelector(
+              "h3"
+            );
+
+          const price =
+            existing.querySelector(
+              ".price"
+            );
+
+          const button =
+            existing.querySelector(
+              ".buy-button"
+            );
+
+
+          if (data.image) {
+
+            const newImage =
+              new Image();
+
+
+            newImage.onload =
+              () => {
+
+                image.style.opacity =
+                  "0.25";
+
+
+                setTimeout(
+                  () => {
+
+                    image.src =
+                      data.image;
+
+                    image.alt =
+                      data.name ||
+                      "Product image";
+
+                    image.style.opacity =
+                      "1";
+
+                  },
+                  150
+                );
+
+              };
+
+
+            newImage.onerror =
+              () => {
+
+                console.warn(
+                  "Could not load image:",
+                  data.image
+                );
+
+              };
+
+
+            newImage.src =
+              data.image;
+
+          }
+
+
+          if (
+            data.category !==
+            undefined
+          ) {
+
+            category.textContent =
+              data.category;
+
+          }
+
+
+          if (
+            data.name !==
+            undefined
+          ) {
+
+            name.textContent =
+              data.name;
+
+          }
+
+
+          if (
+            data.price !==
+            undefined
+          ) {
+
+            price.textContent =
+              `$${data.price}`;
+
+          }
+
+
+          if (data.url) {
+
+            button.href =
+              data.url;
+
+          }
+
+        }
+      );
+
+
+      while (
+        productContainer.children.length >
+        productData.length
+      ) {
+
+        productContainer.lastElementChild.remove();
+
+      }
+
+    }
+
+
+    async function fetchNewProducts() {
+
+      if (stopped) {
+        return;
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: "GET",
+
+              headers: {
+                "Accept":
+                  "application/json"
+              },
+
+              signal:
+                AbortSignal.timeout(4000)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            `API returned HTTP ${response.status}`
+          );
+
+        }
+
+
+        const data =
+          await response.json();
+
+
+        if (
+          !Array.isArray(
+            data.products
+          )
+        ) {
+
+          throw new Error(
+            "API response does not contain a products array."
+          );
+
+        }
+
+
+        if (
+          data.products.length === 0
+        ) {
+
+          throw new Error(
+            "API returned an empty products array."
+          );
+
+        }
+
+
+        updateProducts(
+          data.products
+        );
+
+
+        statusText.textContent =
+          "Products updated • next update in 5 seconds";
+
+
+        statusDot.classList.remove(
+          "stopped"
+        );
+
+      }
+
+      catch (error) {
+
+        console.warn(
+          "Product API failed.",
+          error
+        );
+
+
+        stopProductUpdates(
+          "Product API unavailable — showing the latest available products"
+        );
+
+      }
+
+    }
+
+
+    function stopProductUpdates(
+      message
+    ) {
+
+      stopped = true;
+
+
+      if (
+        updateTimer !== null
+      ) {
+
+        clearInterval(
+          updateTimer
+        );
+
+        updateTimer = null;
+
+      }
+
+
+      statusText.textContent =
+        message;
+
+
+      statusDot.classList.add(
+        "stopped"
+      );
+
+    }
+
+
+    function startProductUpdates() {
+
+      if (stopped) {
+        return;
+      }
+
+
+      fetchNewProducts();
+
+
+      updateTimer =
+        setInterval(
+          () => {
+
+            fetchNewProducts();
+
+          },
+          5000
+        );
+
+    }
+
+
+    window.addEventListener(
+      "pagehide",
+      () => {
+
+        if (
+          updateTimer !== null
+        ) {
+
+          clearInterval(
+            updateTimer
+          );
+
+          updateTimer = null;
+
+        }
+
+      }
+    );
+
+
+    startProductUpdates();
+
+  </script>
+</body>
+</html>
+
+
