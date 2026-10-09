@@ -4,7 +4,6 @@
 
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="4iQish564kq3o0flHdH0ZjihY4Qp82aJoVJi7dbj4fY" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -435,6 +434,386 @@
 
   </section>
   
+  <section>
+    <!--Uses https://kommodo.ai/tools/image-to-url-->
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, sans-serif;
+      margin: 0;
+      background: #f6f6f8;
+      color: #222;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .image-container {
+      width: 100%;
+      height: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-fallback {
+      padding: 12px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .image-fallback a {
+      color: #635bff;
+      font-weight: bold;
+    }
+
+    .product h3 {
+      margin: 4px 0 0;
+      font-size: 1.1rem;
+      overflow-wrap: anywhere;
+    }
+
+    .product p {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .buy-btn {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      background: #635bff;
+      color: #fff;
+      padding: 12px 0;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: auto;
+    }
+
+    .buy-btn:hover {
+      background: #5048e5;
+    }
+
+    .status {
+      padding: 24px;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="products" class="products">
+  </div>
+
+  <script>
+    const SHEET_URL =
+      "https://docs.google.com/spreadsheets/d/1-6jrw_LldbRtPDZdXQpXfifvxFYijM6n4-17f8z72fM/gviz/tq?tqx=out:csv&headers=1";
+
+    const KOMMODO_HOST = "kommodo.ai";
+
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let cell = "";
+      let quoted = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+
+        if (quoted) {
+          if (c === '"' && text[i + 1] === '"') {
+            cell += '"';
+            i++;
+          } else if (c === '"') {
+            quoted = false;
+          } else {
+            cell += c;
+          }
+        } else if (c === '"') {
+          quoted = true;
+        } else if (c === ",") {
+          row.push(cell);
+          cell = "";
+        } else if (c === "\n" || c === "\r") {
+          if (c === "\r" && text[i + 1] === "\n") i++;
+          row.push(cell);
+          rows.push(row);
+          row = [];
+          cell = "";
+        } else {
+          cell += c;
+        }
+      }
+
+      if (cell.length || row.length) {
+        row.push(cell);
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    function safeUrl(value) {
+      try {
+        const url = new URL(String(value || "").trim());
+
+        if (url.protocol === "https:" || url.protocol === "http:") {
+          return url.href;
+        }
+      } catch (error) {
+        return "";
+      }
+
+      return "";
+    }
+
+    function testImage(url) {
+      return new Promise(resolve => {
+        const image = new Image();
+
+        image.onload = () => resolve(true);
+        image.onerror = () => resolve(false);
+        image.src = url;
+      });
+    }
+
+    async function getImageUrl(value) {
+      const url = safeUrl(value);
+
+      if (!url) return null;
+
+      let parsed;
+
+      try {
+        parsed = new URL(url);
+      } catch (error) {
+        return null;
+      }
+
+      const isKommodo =
+        parsed.hostname === KOMMODO_HOST ||
+        parsed.hostname.endsWith("." + KOMMODO_HOST);
+
+      if (await testImage(url)) {
+        return url;
+      }
+
+      if (!isKommodo) {
+        return null;
+      }
+
+      try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error("Kommodo returned HTTP " + response.status);
+        }
+
+        const html = await response.text();
+
+        const doc = new DOMParser().parseFromString(
+          html,
+          "text/html"
+        );
+
+        const candidates = [
+          doc.querySelector('meta[property="og:image"]')
+            ?.getAttribute("content"),
+
+          doc.querySelector('meta[name="twitter:image"]')
+            ?.getAttribute("content"),
+
+          doc.querySelector('meta[property="og:image:url"]')
+            ?.getAttribute("content")
+        ];
+
+        for (const candidate of candidates) {
+          if (!candidate) continue;
+
+          const imageUrl = safeUrl(
+            new URL(candidate, url).href
+          );
+
+          if (imageUrl && await testImage(imageUrl)) {
+            return imageUrl;
+          }
+        }
+      } catch (error) {
+        console.warn(
+          "Kommodo preview could not be retrieved:",
+          error.message
+        );
+      }
+
+      return null;
+    }
+
+    function showImageFallback(container, originalUrl) {
+      const fallback = document.createElement("div");
+      fallback.className = "image-fallback";
+
+      const message = document.createElement("p");
+      message.textContent = "Image preview unavailable.";
+
+      fallback.appendChild(message);
+
+      if (originalUrl) {
+        const link = document.createElement("a");
+        link.href = originalUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Open Kommodo image";
+        fallback.appendChild(link);
+      }
+
+      container.replaceChildren(fallback);
+    }
+
+    async function setProductImage(container, imageValue, name) {
+      const imageUrl = await getImageUrl(imageValue);
+
+      if (!imageUrl) {
+        showImageFallback(container, imageValue);
+        return;
+      }
+
+      const image = document.createElement("img");
+      image.alt = name;
+      image.loading = "lazy";
+
+      image.onerror = () => {
+        showImageFallback(container, imageValue);
+      };
+
+      image.src = imageUrl;
+      container.replaceChildren(image);
+    }
+
+    function createProduct(product) {
+      const card = document.createElement("div");
+      card.className = "product";
+
+      const imageContainer = document.createElement("div");
+      imageContainer.className = "image-container";
+
+      const name = document.createElement("h3");
+      name.textContent = product.name;
+
+      const price = document.createElement("p");
+      price.textContent = product.price;
+
+      card.append(imageContainer, name, price);
+
+      const buyUrl = safeUrl(product.link);
+
+      if (buyUrl) {
+        const button = document.createElement("a");
+        button.className = "buy-btn";
+        button.href = buyUrl;
+        button.textContent = "Buy Now";
+        button.target = "_blank";
+        button.rel = "noopener noreferrer";
+        card.appendChild(button);
+      }
+
+      setProductImage(
+        imageContainer,
+        product.image,
+        product.name
+      );
+
+      return card;
+    }
+
+    async function loadProducts() {
+      const box = document.getElementById("products");
+
+      try {
+        const response = await fetch(SHEET_URL);
+
+        if (!response.ok) {
+          throw new Error(
+            "Google Sheets returned HTTP " + response.status
+          );
+        }
+
+        const text = await response.text();
+
+        const rows = parseCSV(text).map(row =>
+          row.map(cell => cell.trim())
+        );
+
+        const items = rows
+          .filter(row =>
+            row.length >= 4 &&
+            row[0] &&
+            row[0].toLowerCase() !== "name" &&
+            safeUrl(row[3])
+          )
+          .map(([name, price, image, link]) => ({
+            name,
+            price,
+            image: image || "",
+            link
+          }));
+
+        box.replaceChildren();
+
+        if (items.length === 0) {
+          box.textContent =
+            "No products found.";
+          return;
+        }
+
+        items.forEach(product => {
+          box.appendChild(createProduct(product));
+        });
+      } catch (error) {
+        console.error("Product loading failed:", error);
+
+        box.textContent =
+          "Unable to load products. Check your internet connection.";
+      }
+    }
+
+    loadProducts();
+  </script>
+
+  </section>
+  
 <section> 
  
  <div class="socials">
@@ -446,6 +825,10 @@
     <i class="fab fa-tiktok" style="font-size: 32px; color: #000000;"></i>
   </a>
   
+  <a href="https://www.facebook.com/share/14r5GhSCNxD/?mibextid=wwXIfr" target="_blank" title="Facebook">
+    <i class="fab fa-facebook-f" style="font-size: 32px; color: #1877F2;"></i>
+  </a>
+
   </section>
  
   <footer id="about">
