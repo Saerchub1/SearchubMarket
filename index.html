@@ -6,6 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Searchub - The best site for tech based apparel and products. Wether you need tech based graphical clothing, microchips/electronics or any tech based product we have listed on our stores. BradDesigning will ship these products to you in a very short time frame (usually 1-10 days) saving waiting time for our many customers. At BradDesigning we believe in giving our customers benefits, so every now and then there will be discounts on some of our products.">
 
 <link rel="icon" type="image/png" href="icon.png">
 
@@ -321,6 +322,10 @@
     <div class="nav-links">
       <a href="#about">About</a>
     </div>
+    
+    <div class="nav-links">
+      <a href="#Seemelive">See me live</a>
+    </div>
   </nav>
 
   <header class="hero">
@@ -431,7 +436,7 @@
       </a>
 
     </div>
-
+    
   </section>
   
   <section>
@@ -673,7 +678,7 @@
         }
       } catch (error) {
         console.warn(
-          "Kommodo preview could not be retrieved:",
+          "Preview could not be retrieved:",
           error.message
         );
       }
@@ -794,7 +799,7 @@
 
         if (items.length === 0) {
           box.textContent =
-            "No products found.";
+            " ";
           return;
         }
 
@@ -831,6 +836,341 @@
 
   </section>
  
+ <section id="Seemelive">
+   
+     <style>
+    #stream-container {
+      position: relative;
+      top: 75px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stream-player {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+    }
+
+    .stream-message {
+      box-sizing: border-box;
+      min-height: 100px;
+      padding: 32px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #aaa;
+      background: #181818;
+    }
+  </style>
+
+  <div id="stream-container">
+    <div class="stream-message">
+      Checking livestream...
+    </div>
+  </div>
+
+  <script>
+  (() => {
+    "use strict";
+
+    const SHEET_URL =
+      "https://docs.google.com/spreadsheets/d/1-7TiCqagiAosQlEO2Vm32wW7QRmGcmoT1A0zNxvNDWw/gviz/tq?tqx=out:csv&headers=1";
+
+    const POLL_INTERVAL = 20000;
+
+    const container =
+      document.getElementById("stream-container");
+
+    if (!container) {
+      console.error(
+        "Livestream stopped: stream-container was not found."
+      );
+      return;
+    }
+
+    let currentState = "";
+    let currentPlayer = null;
+    let isLoading = false;
+    let requestController = null;
+
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let cell = "";
+      let quoted = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+
+        if (quoted) {
+          if (c === '"' && text[i + 1] === '"') {
+            cell += '"';
+            i++;
+          } else if (c === '"') {
+            quoted = false;
+          } else {
+            cell += c;
+          }
+        } else if (c === '"') {
+          quoted = true;
+        } else if (c === ",") {
+          row.push(cell);
+          cell = "";
+        } else if (c === "\n" || c === "\r") {
+          if (c === "\r" && text[i + 1] === "\n") {
+            i++;
+          }
+
+          row.push(cell);
+          rows.push(row);
+          row = [];
+          cell = "";
+        } else {
+          cell += c;
+        }
+      }
+
+      if (cell.length || row.length) {
+        row.push(cell);
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    function getYouTubeEmbedUrl(value) {
+      if (!value || !value.trim()) {
+        return null;
+      }
+
+      let url;
+
+      try {
+        url = new URL(value.trim());
+      } catch {
+        return null;
+      }
+
+      if (url.protocol !== "https:" &&
+          url.protocol !== "http:") {
+        return null;
+      }
+
+      const host = url.hostname
+        .toLowerCase()
+        .replace(/^www\./, "")
+        .replace(/^m\./, "");
+
+      let videoId = "";
+
+      if (host === "youtu.be") {
+        videoId = url.pathname
+          .split("/")
+          .filter(Boolean)[0] || "";
+      } else if (
+        host === "youtube.com" ||
+        host === "youtube-nocookie.com"
+      ) {
+        if (url.pathname === "/watch") {
+          videoId = url.searchParams.get("v") || "";
+        } else {
+          const match = url.pathname.match(
+            /^\/(?:live|embed|shorts)\/([^/]+)/
+          );
+
+          if (match) {
+            videoId = match[1];
+          }
+        }
+      } else {
+        return null;
+      }
+
+      if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
+        return null;
+      }
+
+      return (
+        "https://www.youtube-nocookie.com/embed/" +
+        videoId
+      );
+    }
+
+    function showMessage(message, state) {
+      if (currentState === state) {
+        return;
+      }
+
+      currentState = state;
+      currentPlayer = null;
+
+      container.replaceChildren();
+
+      const messageBox = document.createElement("div");
+      messageBox.className = "stream-message";
+      messageBox.textContent = message;
+
+      container.appendChild(messageBox);
+    }
+
+    function showStream(embedUrl) {
+      if (
+        currentState === embedUrl &&
+        currentPlayer &&
+        currentPlayer.isConnected
+      ) {
+        return;
+      }
+
+      currentState = embedUrl;
+      currentPlayer = null;
+
+      const iframe = document.createElement("iframe");
+
+      iframe.className = "stream-player";
+      iframe.src = embedUrl;
+      iframe.title = "YouTube livestream";
+      iframe.allow =
+        "autoplay; encrypted-media; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.loading = "eager";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+      container.replaceChildren(iframe);
+      currentPlayer = iframe;
+    }
+
+    async function loadStream() {
+      if (isLoading) {
+        return;
+      }
+
+      isLoading = true;
+      requestController = new AbortController();
+
+      try {
+        const response = await fetch(
+          SHEET_URL,
+          {
+            cache: "no-store",
+            signal: requestController.signal
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            "Google Sheets returned HTTP " +
+            response.status
+          );
+        }
+
+        const csv = await response.text();
+        const rows = parseCSV(csv);
+
+        if (!rows.length || !rows[0].length) {
+          showMessage(
+            "No livestream is currently on.",
+            "empty"
+          );
+          return;
+        }
+
+        const headers = rows[0].map(value =>
+          value.trim().replace(/^\uFEFF/, "").toLowerCase()
+        );
+
+        const urlIndex = headers.indexOf("url");
+
+        if (urlIndex === -1) {
+          showMessage(
+            "Livestream settings are not configured.",
+            "missing-header"
+          );
+
+          console.error(
+            'Google Sheet must have a column named "URL".'
+          );
+
+          return;
+        }
+
+        const config = rows.slice(1).find(row =>
+          row.some(value => value.trim() !== "")
+        );
+
+        if (!config) {
+          showMessage(
+            "No livestream is currently on.",
+            "empty"
+          );
+          return;
+        }
+
+        const streamUrl = (
+          config[urlIndex] || ""
+        ).trim();
+
+        if (!streamUrl) {
+          showMessage(
+            "No livestream is currently on.",
+            "empty"
+          );
+          return;
+        }
+
+        const embedUrl =
+          getYouTubeEmbedUrl(streamUrl);
+
+        if (!embedUrl) {
+          showMessage(
+            "The livestream URL is invalid or unsupported.",
+            "invalid-url"
+          );
+
+          console.warn(
+            "Livestream URL is not a valid supported YouTube URL."
+          );
+
+          return;
+        }
+
+        showStream(embedUrl);
+
+      } catch (error) {
+        if (error.name === "AbortError") {
+          return;
+        }
+
+        console.error(
+          "Livestream settings could not be refreshed:",
+          error.message || String(error)
+        );
+
+        if (!currentPlayer || !currentPlayer.isConnected) {
+          showMessage(
+            "Livestream settings are temporarily unavailable.",
+            "connection-error"
+          );
+        }
+
+      } finally {
+        isLoading = false;
+        requestController = null;
+      }
+    }
+
+    loadStream();
+
+    setInterval(loadStream, POLL_INTERVAL);
+
+  })();
+  </script>
+
+ </section>
   <footer id="about">
 
     <p>
