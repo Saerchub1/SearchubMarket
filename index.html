@@ -1,16 +1,55 @@
 <!DOCTYPE html>
-
-<!--Searchub - The best site for tech based apparel and products. Wether you need tech based graphical clothing, microchips/electronics or any tech based product we have listed on our stores. BradDesigning will ship these products to you in a very short time frame (usually 1-10 days) saving waiting time for our many customers. At BradDesigning we believe in giving our customers benefits, so every now and then there will be discounts on some of our products.-->
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Searchub - The best site for tech based apparel and products. Wether you need tech based graphical clothing, microchips/electronics or any tech based product we have listed on our stores. BradDesigning will ship these products to you in a very short time frame (usually 1-10 days) saving waiting time for our many customers. At BradDesigning we believe in giving our customers benefits, so every now and then there will be discounts on some of our products.">
-
-<link rel="icon" type="image/png" href="icon.png">
-
+  <meta name="theme-color" content="#7c3aed" />
   <title>Searchub - Tech apparel and products</title>
+  <meta name="description" content="Searchub - The best site for tech based apparel and products. Whether you need tech based graphical clothing, microchips/electronics or any tech based product, we have it listed on our stores. BradDesigning ships products to you in a very short time frame (usually 1-10 days). Every now and then there are discounts on some of our products.">
+
+  <link rel="canonical" href="https://searchub.net/" />
+  <link rel="icon" type="image/png" href="icon.png">
+ 
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://searchub.net/">
+<meta property="og:title" content="Searchub — Tech apparel and products">
+<meta property="og:description" content="Tech apparel, microchips and electronics deals from BradDesigning. Fast shipping, usually 1–10 days.">
+<meta property="og:image" content="https://images.pexels.com/photos/40561813/pexels-photo-40561813.jpeg?cs=srgb&dl=pexels-henry-bragg-2165231701-40561813.jpg&fm=jpg">
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Searchub">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Searchub | Tech Apparel, Microchips & Electronics">
+<meta name="twitter:description" content="Tech apparel, microchips and electronics deals from BradDesigning. Fast shipping, usually 1-10 days.">
+<meta name="twitter:image" content="https://images.pexels.com/photos/40561813/pexels-photo-40561813.jpeg?cs=srgb&dl=pexels-henry-bragg-2165231701-40561813.jpg&fm=jpg">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Searchub",
+    "url": "https://searchub.net",
+    "description": "Tech apparel, microchips, electronics and tech products from BradDesigning.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "BradDesigning",
+      "url": "https://searchub.net",
+      "logo": "https://searchub.net/icon.png",
+      "sameAs": [
+        "https://instagram.com/braddesigning",
+        "https://tiktok.com/@braddesigning",
+        "https://www.facebook.com/share/14r5GhSCNxD/",
+        "https://www.depop.com/braddesigning/",
+        "https://www.vinted.com/member/3179537117-braddesigning"
+      ]
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -18,30 +57,31 @@
       --purple: #7c3aed;
       --pink: #ec4899;
       --orange: #f97316;
-      --yellow: #facc15;
-      --cyan: #06b6d4;
       --dark: #171329;
       --light: #fff8ff;
       --card: rgba(255, 255, 255, 0.88);
       --shadow: 0 18px 50px rgba(62, 31, 105, 0.15);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
     body {
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--dark);
       background:
         radial-gradient(circle at 10% 10%, #ffd6f7 0, transparent 30%),
         radial-gradient(circle at 90% 15%, #c8f7ff 0, transparent 28%),
         radial-gradient(circle at 50% 100%, #ffe8b5 0, transparent 35%),
         var(--light);
+      background-attachment: fixed;
       min-height: 100vh;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--purple);
+      outline-offset: 3px;
     }
 
     nav {
@@ -54,6 +94,7 @@
       padding: 18px 6%;
       background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(124, 58, 237, 0.1);
     }
 
@@ -61,23 +102,13 @@
       font-size: 1.65rem;
       font-weight: 900;
       letter-spacing: -1px;
-      background:
-        linear-gradient(
-          90deg,
-          var(--purple),
-          var(--pink),
-          var(--orange)
-        );
+      background: linear-gradient(90deg, var(--purple), var(--pink), var(--orange));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+    .nav-links { display: flex; gap: 10px; align-items: center; }
 
     .nav-links a {
       text-decoration: none;
@@ -103,13 +134,7 @@
       position: relative;
       overflow: hidden;
       color: white;
-      background:
-        linear-gradient(
-          120deg,
-          rgba(124, 58, 237, 0.96),
-          rgba(236, 72, 153, 0.92),
-          rgba(249, 115, 22, 0.9)
-        );
+      background: linear-gradient(120deg, rgba(124,58,237,.96), rgba(236,72,153,.92), rgba(249,115,22,.9));
       box-shadow: var(--shadow);
     }
 
@@ -121,25 +146,10 @@
       background: rgba(255, 255, 255, 0.15);
     }
 
-    .hero::before {
-      width: 300px;
-      height: 300px;
-      right: -80px;
-      top: -90px;
-    }
+    .hero::before { width: 300px; height: 300px; right: -80px; top: -90px; }
+    .hero::after { width: 180px; height: 180px; right: 250px; bottom: -100px; }
 
-    .hero::after {
-      width: 180px;
-      height: 180px;
-      right: 250px;
-      bottom: -100px;
-    }
-
-    .hero-content {
-      max-width: 650px;
-      position: relative;
-      z-index: 2;
-    }
+    .hero-content { max-width: 650px; position: relative; z-index: 2; }
 
     .eyebrow {
       display: inline-block;
@@ -184,28 +194,11 @@
       box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .section {
-      width: min(1180px, 90%);
-      margin: 60px auto;
-    }
+    .section { width: min(1180px, 90%); margin: 60px auto; }
 
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 25px;
-    }
-
-    .section-heading h2 {
-      font-size: 2rem;
-      letter-spacing: -1px;
-    }
-
-    .section-heading p {
-      color: #6d6681;
-      margin-top: 5px;
-    }
+    .section-heading { margin-bottom: 25px; }
+    .section-heading h2 { font-size: 2rem; letter-spacing: -1px; }
+    .section-heading p { color: #6d6681; margin-top: 5px; }
 
     .stores {
       display: grid;
@@ -230,233 +223,15 @@
       box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
     }
 
-    .store-button strong {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-    }
+    .store-button strong { display: block; font-size: 1.1rem; margin-bottom: 5px; }
+    .store-button span { color: #6d6681; font-size: 0.9rem; }
 
-    .store-button span {
-      color: #777087;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      margin-top: 80px;
-      padding: 40px 6%;
-      text-align: center;
-      color: #777087;
-      background: rgba(255, 255, 255, 0.65);
-    }
-
-    @media (max-width: 900px) {
-      .stores {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero {
-        padding: 40px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        padding: 15px 5%;
-      }
-
-      .nav-links a:nth-child(2),
-      .nav-links a:nth-child(3) {
-        display: none;
-      }
-
-      .hero {
-        width: 92%;
-        padding: 32px 25px;
-        border-radius: 26px;
-      }
-
-      .hero h1 {
-        letter-spacing: -3px;
-      }
-
-      .stores,
-      .products {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        width: 92%;
-      }
-    }
-    
-    .socials {
-  display: flex;
-  gap: 24px;
-}
-
-.socials a {
-  text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  position: relative;
-  left: 130px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.socials a:hover {
-  transform: scale(1.15);
-  opacity: 0.8;
-}
-
-  </style>
-</head>
-
-<body>
-
-  <nav>
-    <div class="logo">
-      Searchub ✦
-    </div>
-
-    <div class="nav-links">
-      <a href="#about">About</a>
-    </div>
-    
-    <div class="nav-links">
-      <a href="#Seemelive">See me live</a>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-content">
-
-      <span class="eyebrow">
-        DISCOVER SOMETHING AWESOME with BradDesigning. The brand that powers tomorrow. 
-      </span>
-
-      <h1>
-        Searchub
-      </h1>
-
-      <p>
-        Discover tech apparel and products from some of the coolest
-        online stores offered by BradDesigning.
-      </p>
-
-      <a
-        class="hero-button"
-        href="#stores"
-      >
-        Explore current stores →
-      </a>
-
-    </div>
-  </header>
-
-  <section
-    class="section"
-    id="stores"
-  >
-
-    <div class="section-heading">
-      <div>
-
-        <h2>
-          Favorite Stores
-        </h2>
-
-        <p>
-          Jump directly to the stores you love.
-        </p>
-
-      </div>
-    </div>
-
-    <div class="stores">
-
-      <a
-        class="store-button"
-        href="https://www.depop.com/braddesigning/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <strong>
-          BradDesigning Depop
-        </strong>
-
-        <span>
-          Tech apparel
-        </span>
-      </a>
-
-      <a
-        class="store-button"
-        href="https://www.vinted.com/member/3179537117-braddesigning"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <strong>
-           BradDesigning Vinted
-        </strong>
-
-        <span>
-          Tech apparel
-        </span>
-      </a>
-
-      <a
-        class="store-button"
-        href="https://ebay.io/m/pDIvQY"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <strong>
-           BradDesigning Ebay
-        </strong>
-
-        <span>
-          Microchips, PCBs, wiring and electronics
-        </span>
-      </a>
-
-      <a
-        class="store-button"
-        href="https://www.etsy.com/people/egpw5cjqsvdgzguf"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <strong>
-         BradDesigning Etsy
-        </strong>
-
-        <span>
-          Tech apparel
-        </span>
-      </a>
-
-    </div>
-    
-  </section>
-  
-  <section>
-    <!--Uses https://kommodo.ai/tools/image-to-url-->
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, sans-serif;
-      margin: 0;
-      background: #f6f6f8;
-      color: #222;
-    }
-
+    /* Products */
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
-      padding: 16px;
-      max-width: 1000px;
-      margin: 0 auto;
+      padding: 16px 0;
     }
 
     .product {
@@ -484,39 +259,23 @@
       justify-content: center;
     }
 
-    .product img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .product img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
     .image-fallback {
       padding: 12px;
       font-size: 14px;
       overflow-wrap: anywhere;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
+    .image-fallback a { color: #4338ca; font-weight: bold; }
 
-    .image-fallback a {
-      color: #635bff;
-      font-weight: bold;
-    }
-
-    .product h3 {
-      margin: 4px 0 0;
-      font-size: 1.1rem;
-      overflow-wrap: anywhere;
-    }
-
-    .product p {
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
+    .product h3 { margin: 4px 0 0; font-size: 1.1rem; overflow-wrap: anywhere; }
+    .product .price { margin: 0; font-size: 1.2rem; font-weight: bold; }
 
     .buy-btn {
       display: block;
-      box-sizing: border-box;
       width: 100%;
       background: #635bff;
       color: #fff;
@@ -527,28 +286,186 @@
       margin-top: auto;
     }
 
-    .buy-btn:hover {
-      background: #5048e5;
+    .buy-btn:hover { background: #5048e5; }
+
+    .status { padding: 24px; text-align: center; grid-column: 1 / -1; }
+
+    .retry-btn {
+      margin-top: 12px;
+      padding: 10px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--purple);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .status {
-      padding: 24px;
+    /* Socials */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 40px auto 0;
+    }
+
+    .socials a {
+      text-decoration: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .socials a:hover { transform: scale(1.15); opacity: 0.8; }
+
+    #stream-container { width: 100%; max-width: 1200px; margin: 0 auto; }
+
+    .stream-player { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+
+    .stream-message {
+      min-height: 100px;
+      padding: 32px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      grid-column: 1 / -1;
+      color: #bbb;
+      background: #181818;
+      border-radius: 12px;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 40px 6%;
+      text-align: center;
+      color: #5f587a;
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    footer p + p { margin-top: 12px; }
+
+    @media (max-width: 900px) {
+      .stores { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding: 40px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 15px 5%; }
+      .nav-links { gap: 2px; }
+      .nav-links a { padding: 8px 10px; }
+      .hero { width: 92%; padding: 32px 25px; border-radius: 26px; }
+      .hero h1 { letter-spacing: -3px; }
+      .stores { grid-template-columns: 1fr; }
+      .section { width: 92%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <div id="products" class="products">
-  </div>
+
+  <nav>
+    <div class="logo">Searchub ✦</div>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#Seemelive">See me live</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">
+        DISCOVER SOMETHING AWESOME with BradDesigning. The brand that powers tomorrow.
+      </span>
+      <h1>Searchub</h1>
+      <p>
+        Discover tech apparel and products from some of the coolest
+        online stores offered by BradDesigning.
+      </p>
+      <a class="hero-button" href="#stores">Explore current stores →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="stores">
+      <div class="section-heading">
+        <h2>Favorite Stores</h2>
+        <p>Jump directly to the stores you love.</p>
+      </div>
+
+      <div class="stores">
+        <a class="store-button" href="https://www.depop.com/braddesigning/" target="_blank" rel="noopener noreferrer">
+          <strong>BradDesigning Depop</strong>
+          <span>Tech apparel</span>
+        </a>
+
+        <a class="store-button" href="https://www.vinted.com/member/3179537117-braddesigning" target="_blank" rel="noopener noreferrer">
+          <strong>BradDesigning Vinted</strong>
+          <span>Tech apparel</span>
+        </a>
+
+        <a class="store-button" href="https://ebay.io/m/pDIvQY" target="_blank" rel="noopener noreferrer">
+          <strong>BradDesigning Ebay</strong>
+          <span>Microchips, PCBs, wiring and electronics</span>
+        </a>
+
+        <a class="store-button" href="https://www.etsy.com/people/egpw5cjqsvdgzguf" target="_blank" rel="noopener noreferrer">
+          <strong>BradDesigning Etsy</strong>
+          <span>Tech apparel</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-heading">
+        <h2>Shop</h2>
+        <p>Buy directly from BradDesigning.</p>
+      </div>
+      <!-- Image hosting helper: https://kommodo.ai/tools/image-to-url -->
+      <div id="products" class="products" aria-live="polite">
+        <div class="status">Loading products...</div>
+      </div>
+      <noscript><p class="status">Please enable JavaScript to see our products.</p></noscript>
+    </section>
+
+    <section>
+      <div class="socials">
+        <a href="https://instagram.com/braddesigning" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+          <i class="fab fa-instagram" style="font-size: 32px; color: #E4405F;"></i>
+        </a>
+        <a href="https://tiktok.com/@braddesigning" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok">
+          <i class="fab fa-tiktok" style="font-size: 32px; color: #000000;"></i>
+        </a>
+        <a href="https://www.facebook.com/share/14r5GhSCNxD/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+          <i class="fab fa-facebook-f" style="font-size: 32px; color: #1877F2;"></i>
+        </a>
+      </div>
+    </section>
+
+    <section id="Seemelive" class="section">
+      <div id="stream-container">
+        <div class="stream-message">Checking livestream...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 BradDesigning ✦ Made for meaningful shopping.</p>
+    <p>
+      In no way is searchub.net affiliated with or related to searchub.com.
+      searchub.net only sells tech and tech related products and is in no way
+      infringing on searchub.com's intellectual property or image. searchub.net
+      is owned and operated by BradDesigning, a tech apparel and tech product
+      based brand.
+    </p>
+  </footer>
 
   <script>
-    const SHEET_URL =
-      "https://docs.google.com/spreadsheets/d/1-6jrw_LldbRtPDZdXQpXfifvxFYijM6n4-17f8z72fM/gviz/tq?tqx=out:csv&headers=1";
-
-    const KOMMODO_HOST = "kommodo.ai";
-
     function parseCSV(text) {
       const rows = [];
       let row = [];
@@ -590,594 +507,340 @@
 
       return rows;
     }
+  </script>
 
-    function safeUrl(value) {
-      try {
-        const url = new URL(String(value || "").trim());
+  <!-- Products -->
+  <script>
+    (() => {
+      "use strict";
 
-        if (url.protocol === "https:" || url.protocol === "http:") {
-          return url.href;
+      const SHEET_URL =
+        "https://docs.google.com/spreadsheets/d/1-6jrw_LldbRtPDZdXQpXfifvxFYijM6n4-17f8z72fM/gviz/tq?tqx=out:csv&headers=1";
+
+      const KOMMODO_HOST = "kommodo.ai";
+      const IMAGE_TIMEOUT = 8000;
+
+      function safeUrl(value) {
+        try {
+          const url = new URL(String(value || "").trim());
+          if (url.protocol === "https:" || url.protocol === "http:") {
+            return url.href;
+          }
+        } catch (error) {
+          return "";
         }
-      } catch (error) {
         return "";
       }
 
-      return "";
-    }
+      function testImage(url) {
+        return new Promise(resolve => {
+          const image = new Image();
+          const timer = setTimeout(() => resolve(false), IMAGE_TIMEOUT);
 
-    function testImage(url) {
-      return new Promise(resolve => {
-        const image = new Image();
-
-        image.onload = () => resolve(true);
-        image.onerror = () => resolve(false);
-        image.src = url;
-      });
-    }
-
-    async function getImageUrl(value) {
-      const url = safeUrl(value);
-
-      if (!url) return null;
-
-      let parsed;
-
-      try {
-        parsed = new URL(url);
-      } catch (error) {
-        return null;
-      }
-
-      const isKommodo =
-        parsed.hostname === KOMMODO_HOST ||
-        parsed.hostname.endsWith("." + KOMMODO_HOST);
-
-      if (await testImage(url)) {
-        return url;
-      }
-
-      if (!isKommodo) {
-        return null;
-      }
-
-      try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-          throw new Error("Kommodo returned HTTP " + response.status);
-        }
-
-        const html = await response.text();
-
-        const doc = new DOMParser().parseFromString(
-          html,
-          "text/html"
-        );
-
-        const candidates = [
-          doc.querySelector('meta[property="og:image"]')
-            ?.getAttribute("content"),
-
-          doc.querySelector('meta[name="twitter:image"]')
-            ?.getAttribute("content"),
-
-          doc.querySelector('meta[property="og:image:url"]')
-            ?.getAttribute("content")
-        ];
-
-        for (const candidate of candidates) {
-          if (!candidate) continue;
-
-          const imageUrl = safeUrl(
-            new URL(candidate, url).href
-          );
-
-          if (imageUrl && await testImage(imageUrl)) {
-            return imageUrl;
-          }
-        }
-      } catch (error) {
-        console.warn(
-          "Preview could not be retrieved:",
-          error.message
-        );
-      }
-
-      return null;
-    }
-
-    function showImageFallback(container, originalUrl) {
-      const fallback = document.createElement("div");
-      fallback.className = "image-fallback";
-
-      const message = document.createElement("p");
-      message.textContent = "Image preview unavailable.";
-
-      fallback.appendChild(message);
-
-      if (originalUrl) {
-        const link = document.createElement("a");
-        link.href = originalUrl;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = "Open Kommodo image";
-        fallback.appendChild(link);
-      }
-
-      container.replaceChildren(fallback);
-    }
-
-    async function setProductImage(container, imageValue, name) {
-      const imageUrl = await getImageUrl(imageValue);
-
-      if (!imageUrl) {
-        showImageFallback(container, imageValue);
-        return;
-      }
-
-      const image = document.createElement("img");
-      image.alt = name;
-      image.loading = "lazy";
-
-      image.onerror = () => {
-        showImageFallback(container, imageValue);
-      };
-
-      image.src = imageUrl;
-      container.replaceChildren(image);
-    }
-
-    function createProduct(product) {
-      const card = document.createElement("div");
-      card.className = "product";
-
-      const imageContainer = document.createElement("div");
-      imageContainer.className = "image-container";
-
-      const name = document.createElement("h3");
-      name.textContent = product.name;
-
-      const price = document.createElement("p");
-      price.textContent = product.price;
-
-      card.append(imageContainer, name, price);
-
-      const buyUrl = safeUrl(product.link);
-
-      if (buyUrl) {
-        const button = document.createElement("a");
-        button.className = "buy-btn";
-        button.href = buyUrl;
-        button.textContent = "Buy Now";
-        button.target = "_blank";
-        button.rel = "noopener noreferrer";
-        card.appendChild(button);
-      }
-
-      setProductImage(
-        imageContainer,
-        product.image,
-        product.name
-      );
-
-      return card;
-    }
-
-    async function loadProducts() {
-      const box = document.getElementById("products");
-
-      try {
-        const response = await fetch(SHEET_URL);
-
-        if (!response.ok) {
-          throw new Error(
-            "Google Sheets returned HTTP " + response.status
-          );
-        }
-
-        const text = await response.text();
-
-        const rows = parseCSV(text).map(row =>
-          row.map(cell => cell.trim())
-        );
-
-        const items = rows
-          .filter(row =>
-            row.length >= 4 &&
-            row[0] &&
-            row[0].toLowerCase() !== "name" &&
-            safeUrl(row[3])
-          )
-          .map(([name, price, image, link]) => ({
-            name,
-            price,
-            image: image || "",
-            link
-          }));
-
-        box.replaceChildren();
-
-        if (items.length === 0) {
-          box.textContent =
-            " ";
-          return;
-        }
-
-        items.forEach(product => {
-          box.appendChild(createProduct(product));
+          image.onload = () => { clearTimeout(timer); resolve(true); };
+          image.onerror = () => { clearTimeout(timer); resolve(false); };
+          image.src = url;
         });
-      } catch (error) {
-        console.error("Product loading failed:", error);
-
-        box.textContent =
-          "Unable to load products. Check your internet connection.";
       }
-    }
 
-    loadProducts();
+      async function getImageUrl(value) {
+        const url = safeUrl(value);
+        if (!url) return null;
+
+        if (await testImage(url)) return url;
+
+        const host = new URL(url).hostname;
+        const isKommodo = host === KOMMODO_HOST || host.endsWith("." + KOMMODO_HOST);
+        if (!isKommodo) return null;
+
+        // Works only if the host allows cross-origin requests; otherwise falls back.
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error("HTTP " + response.status);
+
+          const doc = new DOMParser().parseFromString(await response.text(), "text/html");
+
+          const candidates = [
+            doc.querySelector('meta[property="og:image"]')?.getAttribute("content"),
+            doc.querySelector('meta[name="twitter:image"]')?.getAttribute("content"),
+            doc.querySelector('meta[property="og:image:url"]')?.getAttribute("content")
+          ];
+
+          for (const candidate of candidates) {
+            if (!candidate) continue;
+            const imageUrl = safeUrl(new URL(candidate, url).href);
+            if (imageUrl && await testImage(imageUrl)) return imageUrl;
+          }
+        } catch (error) {
+          console.warn("Preview could not be retrieved:", error.message);
+        }
+
+        return null;
+      }
+
+      function showImageFallback(container, originalUrl) {
+        const fallback = document.createElement("div");
+        fallback.className = "image-fallback";
+
+        const message = document.createElement("span");
+        message.textContent = "Image preview unavailable.";
+        fallback.appendChild(message);
+
+        const safe = safeUrl(originalUrl);
+        if (safe) {
+          const link = document.createElement("a");
+          link.href = safe;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = "Open image";
+          fallback.appendChild(link);
+        }
+
+        container.replaceChildren(fallback);
+      }
+
+      async function setProductImage(container, imageValue, name) {
+        const imageUrl = await getImageUrl(imageValue);
+
+        if (!imageUrl) {
+          showImageFallback(container, imageValue);
+          return;
+        }
+
+        const image = document.createElement("img");
+        image.alt = name;
+        image.loading = "lazy";
+        image.onerror = () => showImageFallback(container, imageValue);
+        image.src = imageUrl;
+        container.replaceChildren(image);
+      }
+
+      function createProduct(product) {
+        const card = document.createElement("div");
+        card.className = "product";
+
+        const imageContainer = document.createElement("div");
+        imageContainer.className = "image-container";
+
+        const name = document.createElement("h3");
+        name.textContent = product.name;
+
+        card.append(imageContainer, name);
+
+        if (product.price) {
+          const price = document.createElement("p");
+          price.className = "price";
+          price.textContent = product.price;
+          card.appendChild(price);
+        }
+
+        const buyUrl = safeUrl(product.link);
+        if (buyUrl) {
+          const button = document.createElement("a");
+          button.className = "buy-btn";
+          button.href = buyUrl;
+          button.textContent = "Buy Now";
+          button.target = "_blank";
+          button.rel = "noopener noreferrer";
+          button.setAttribute("aria-label", "Buy " + product.name);
+          card.appendChild(button);
+        }
+
+        setProductImage(imageContainer, product.image, product.name);
+        return card;
+      }
+
+      function showStatus(box, message, withRetry) {
+        const status = document.createElement("div");
+        status.className = "status";
+
+        const text = document.createElement("div");
+        text.textContent = message;
+        status.appendChild(text);
+
+        if (withRetry) {
+          const retry = document.createElement("button");
+          retry.type = "button";
+          retry.className = "retry-btn";
+          retry.textContent = "Try again";
+          retry.addEventListener("click", () => {
+            showStatus(box, "Loading products...", false);
+            loadProducts();
+          });
+          status.appendChild(retry);
+        }
+
+        box.replaceChildren(status);
+      }
+
+      async function loadProducts() {
+        const box = document.getElementById("products");
+
+        try {
+          const response = await fetch(SHEET_URL);
+          if (!response.ok) throw new Error("Google Sheets returned HTTP " + response.status);
+
+          const rows = parseCSV(await response.text()).map(row => row.map(cell => cell.trim()));
+
+          const items = rows
+            .filter(row =>
+              row.length >= 4 &&
+              row[0] &&
+              row[0].toLowerCase() !== "name" &&
+              safeUrl(row[3])
+            )
+            .map(([name, price, image, link]) => ({ name, price, image: image || "", link }));
+
+          if (items.length === 0) {
+            showStatus(box, "No products are available right now. Check back soon!", false);
+            return;
+          }
+
+          box.replaceChildren(...items.map(createProduct));
+        } catch (error) {
+          console.error("Product loading failed:", error);
+          showStatus(box, "Unable to load products. Please check your connection and try again.", true);
+        }
+      }
+
+      loadProducts();
+    })();
   </script>
 
-  </section>
-  
-<section> 
- 
- <div class="socials">
-  <a href="https://instagram.com/braddesigning" target="_blank" title="Instagram">
-    <i class="fab fa-instagram" style="font-size: 32px; color: #E4405F;"></i>
-  </a>
-  
-  <a href="https://tiktok.com/@braddesigning" target="_blank" title="TikTok">
-    <i class="fab fa-tiktok" style="font-size: 32px; color: #000000;"></i>
-  </a>
-  
-  <a href="https://www.facebook.com/share/14r5GhSCNxD/?mibextid=wwXIfr" target="_blank" title="Facebook">
-    <i class="fab fa-facebook-f" style="font-size: 32px; color: #1877F2;"></i>
-  </a>
-
-  </section>
- 
- <section id="Seemelive">
-   
-     <style>
-    #stream-container {
-      position: relative;
-      top: 75px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .stream-player {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: 0;
-    }
-
-    .stream-message {
-      box-sizing: border-box;
-      min-height: 100px;
-      padding: 32px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #aaa;
-      background: #181818;
-    }
-  </style>
-
-  <div id="stream-container">
-    <div class="stream-message">
-      Checking livestream...
-    </div>
-  </div>
-
+  <!-- Livestream -->
   <script>
-  (() => {
-    "use strict";
+    (() => {
+      "use strict";
 
-    const SHEET_URL =
-      "https://docs.google.com/spreadsheets/d/1-7TiCqagiAosQlEO2Vm32wW7QRmGcmoT1A0zNxvNDWw/gviz/tq?tqx=out:csv&headers=1";
+      const SHEET_URL =
+        "https://docs.google.com/spreadsheets/d/1-7TiCqagiAosQlEO2Vm32wW7QRmGcmoT1A0zNxvNDWw/gviz/tq?tqx=out:csv&headers=1";
 
-    const POLL_INTERVAL = 20000;
+      const POLL_INTERVAL = 20000;
 
-    const container =
-      document.getElementById("stream-container");
+      const container = document.getElementById("stream-container");
+      if (!container) return;
 
-    if (!container) {
-      console.error(
-        "Livestream stopped: stream-container was not found."
-      );
-      return;
-    }
+      let currentState = "";
+      let currentPlayer = null;
+      let isLoading = false;
 
-    let currentState = "";
-    let currentPlayer = null;
-    let isLoading = false;
-    let requestController = null;
+      function getYouTubeEmbedUrl(value) {
+        if (!value || !value.trim()) return null;
 
-    function parseCSV(text) {
-      const rows = [];
-      let row = [];
-      let cell = "";
-      let quoted = false;
+        let url;
+        try {
+          url = new URL(value.trim());
+        } catch {
+          return null;
+        }
 
-      for (let i = 0; i < text.length; i++) {
-        const c = text[i];
+        if (url.protocol !== "https:" && url.protocol !== "http:") return null;
 
-        if (quoted) {
-          if (c === '"' && text[i + 1] === '"') {
-            cell += '"';
-            i++;
-          } else if (c === '"') {
-            quoted = false;
+        const host = url.hostname.toLowerCase().replace(/^www\./, "").replace(/^m\./, "");
+        let videoId = "";
+
+        if (host === "youtu.be") {
+          videoId = url.pathname.split("/").filter(Boolean)[0] || "";
+        } else if (host === "youtube.com" || host === "youtube-nocookie.com") {
+          if (url.pathname === "/watch") {
+            videoId = url.searchParams.get("v") || "";
           } else {
-            cell += c;
+            const match = url.pathname.match(/^\/(?:live|embed|shorts)\/([^/]+)/);
+            if (match) videoId = match[1];
           }
-        } else if (c === '"') {
-          quoted = true;
-        } else if (c === ",") {
-          row.push(cell);
-          cell = "";
-        } else if (c === "\n" || c === "\r") {
-          if (c === "\r" && text[i + 1] === "\n") {
-            i++;
-          }
-
-          row.push(cell);
-          rows.push(row);
-          row = [];
-          cell = "";
         } else {
-          cell += c;
+          return null;
         }
+
+        if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) return null;
+
+        return "https://www.youtube-nocookie.com/embed/" + videoId;
       }
 
-      if (cell.length || row.length) {
-        row.push(cell);
-        rows.push(row);
+      function showMessage(message, state) {
+        if (currentState === state) return;
+
+        currentState = state;
+        currentPlayer = null;
+
+        const box = document.createElement("div");
+        box.className = "stream-message";
+        box.textContent = message;
+        container.replaceChildren(box);
       }
 
-      return rows;
-    }
+      function showStream(embedUrl) {
+        if (currentState === embedUrl && currentPlayer && currentPlayer.isConnected) return;
 
-    function getYouTubeEmbedUrl(value) {
-      if (!value || !value.trim()) {
-        return null;
+        currentState = embedUrl;
+
+        const iframe = document.createElement("iframe");
+        iframe.className = "stream-player";
+        iframe.src = embedUrl;
+        iframe.title = "YouTube livestream";
+        iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+        container.replaceChildren(iframe);
+        currentPlayer = iframe;
       }
 
-      let url;
+      async function loadStream() {
+        if (isLoading || document.hidden) return;
+        isLoading = true;
 
-      try {
-        url = new URL(value.trim());
-      } catch {
-        return null;
-      }
+        try {
+          const response = await fetch(SHEET_URL, { cache: "no-store" });
+          if (!response.ok) throw new Error("Google Sheets returned HTTP " + response.status);
 
-      if (url.protocol !== "https:" &&
-          url.protocol !== "http:") {
-        return null;
-      }
+          const rows = parseCSV(await response.text());
 
-      const host = url.hostname
-        .toLowerCase()
-        .replace(/^www\./, "")
-        .replace(/^m\./, "");
-
-      let videoId = "";
-
-      if (host === "youtu.be") {
-        videoId = url.pathname
-          .split("/")
-          .filter(Boolean)[0] || "";
-      } else if (
-        host === "youtube.com" ||
-        host === "youtube-nocookie.com"
-      ) {
-        if (url.pathname === "/watch") {
-          videoId = url.searchParams.get("v") || "";
-        } else {
-          const match = url.pathname.match(
-            /^\/(?:live|embed|shorts)\/([^/]+)/
-          );
-
-          if (match) {
-            videoId = match[1];
+          if (!rows.length || !rows[0].length) {
+            showMessage("No livestream is currently on.", "empty");
+            return;
           }
-        }
-      } else {
-        return null;
-      }
 
-      if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
-        return null;
-      }
+          const headers = rows[0].map(v => v.trim().replace(/^\uFEFF/, "").toLowerCase());
+          const urlIndex = headers.indexOf("url");
 
-      return (
-        "https://www.youtube-nocookie.com/embed/" +
-        videoId
-      );
-    }
-
-    function showMessage(message, state) {
-      if (currentState === state) {
-        return;
-      }
-
-      currentState = state;
-      currentPlayer = null;
-
-      container.replaceChildren();
-
-      const messageBox = document.createElement("div");
-      messageBox.className = "stream-message";
-      messageBox.textContent = message;
-
-      container.appendChild(messageBox);
-    }
-
-    function showStream(embedUrl) {
-      if (
-        currentState === embedUrl &&
-        currentPlayer &&
-        currentPlayer.isConnected
-      ) {
-        return;
-      }
-
-      currentState = embedUrl;
-      currentPlayer = null;
-
-      const iframe = document.createElement("iframe");
-
-      iframe.className = "stream-player";
-      iframe.src = embedUrl;
-      iframe.title = "YouTube livestream";
-      iframe.allow =
-        "autoplay; encrypted-media; picture-in-picture";
-      iframe.allowFullscreen = true;
-      iframe.loading = "eager";
-      iframe.referrerPolicy = "strict-origin-when-cross-origin";
-
-      container.replaceChildren(iframe);
-      currentPlayer = iframe;
-    }
-
-    async function loadStream() {
-      if (isLoading) {
-        return;
-      }
-
-      isLoading = true;
-      requestController = new AbortController();
-
-      try {
-        const response = await fetch(
-          SHEET_URL,
-          {
-            cache: "no-store",
-            signal: requestController.signal
+          if (urlIndex === -1) {
+            showMessage("Livestream settings are not configured.", "missing-header");
+            console.error('Google Sheet must have a column named "URL".');
+            return;
           }
-        );
 
-        if (!response.ok) {
-          throw new Error(
-            "Google Sheets returned HTTP " +
-            response.status
-          );
+          const config = rows.slice(1).find(row => row.some(v => v.trim() !== ""));
+          const streamUrl = ((config && config[urlIndex]) || "").trim();
+
+          if (!streamUrl) {
+            showMessage("No livestream is currently on.", "empty");
+            return;
+          }
+
+          const embedUrl = getYouTubeEmbedUrl(streamUrl);
+
+          if (!embedUrl) {
+            showMessage("The livestream URL is invalid or unsupported.", "invalid-url");
+            return;
+          }
+
+          showStream(embedUrl);
+        } catch (error) {
+          console.error("Livestream settings could not be refreshed:", error.message || String(error));
+
+          if (!currentPlayer || !currentPlayer.isConnected) {
+            showMessage("Livestream settings are temporarily unavailable.", "connection-error");
+          }
+        } finally {
+          isLoading = false;
         }
-
-        const csv = await response.text();
-        const rows = parseCSV(csv);
-
-        if (!rows.length || !rows[0].length) {
-          showMessage(
-            "No livestream is currently on.",
-            "empty"
-          );
-          return;
-        }
-
-        const headers = rows[0].map(value =>
-          value.trim().replace(/^\uFEFF/, "").toLowerCase()
-        );
-
-        const urlIndex = headers.indexOf("url");
-
-        if (urlIndex === -1) {
-          showMessage(
-            "Livestream settings are not configured.",
-            "missing-header"
-          );
-
-          console.error(
-            'Google Sheet must have a column named "URL".'
-          );
-
-          return;
-        }
-
-        const config = rows.slice(1).find(row =>
-          row.some(value => value.trim() !== "")
-        );
-
-        if (!config) {
-          showMessage(
-            "No livestream is currently on.",
-            "empty"
-          );
-          return;
-        }
-
-        const streamUrl = (
-          config[urlIndex] || ""
-        ).trim();
-
-        if (!streamUrl) {
-          showMessage(
-            "No livestream is currently on.",
-            "empty"
-          );
-          return;
-        }
-
-        const embedUrl =
-          getYouTubeEmbedUrl(streamUrl);
-
-        if (!embedUrl) {
-          showMessage(
-            "The livestream URL is invalid or unsupported.",
-            "invalid-url"
-          );
-
-          console.warn(
-            "Livestream URL is not a valid supported YouTube URL."
-          );
-
-          return;
-        }
-
-        showStream(embedUrl);
-
-      } catch (error) {
-        if (error.name === "AbortError") {
-          return;
-        }
-
-        console.error(
-          "Livestream settings could not be refreshed:",
-          error.message || String(error)
-        );
-
-        if (!currentPlayer || !currentPlayer.isConnected) {
-          showMessage(
-            "Livestream settings are temporarily unavailable.",
-            "connection-error"
-          );
-        }
-
-      } finally {
-        isLoading = false;
-        requestController = null;
       }
-    }
 
-    loadStream();
-
-    setInterval(loadStream, POLL_INTERVAL);
-
-  })();
+      loadStream();
+      setInterval(loadStream, POLL_INTERVAL);
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) loadStream(); });
+    })();
   </script>
-
- </section>
-  <footer id="about">
-
-    <p>
-      © 2026 BradDesigning ✦ Made for meaningful shopping.
-    </p>
-    <p>In no way is searchub.net affiliated with or related to searchub.com. searchub.net only sells tech and tech related products and is in no means infringing on searchub.coms intellectual property or image. searchub.net is owned and operated by BradDesigning, a tech apparel and tech product based branding. </p>
-
-  </footer>
 </body>
 </html>
